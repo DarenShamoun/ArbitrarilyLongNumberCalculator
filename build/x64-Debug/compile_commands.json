@@ -1,0 +1,12 @@
+[
+{
+  "directory": "C:/Users/daren/source/repos/Big Number Postfix Calculator cpp/build/x64-Debug",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP /DWIN32 /D_WINDOWS /W3 /GR /EHsc -EHa /MDd /Zi /Ob0 /Od /RTC1 -std:c++14 /Fosrc\\CMakeFiles\\calc.dir\\main.cpp.obj /FdTARGET_COMPILE_PDB /FS -c \"C:\\Users\\daren\\source\\repos\\Big Number Postfix Calculator cpp\\src\\main.cpp\"",
+  "file": "C:\\Users\\daren\\source\\repos\\Big Number Postfix Calculator cpp\\src\\main.cpp"
+},
+{
+  "directory": "C:/Users/daren/source/repos/Big Number Postfix Calculator cpp/build/x64-Debug",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP /DWIN32 /D_WINDOWS /W3 /GR /EHsc -EHa /MDd /Zi /Ob0 /Od /RTC1 -std:c++14 /Fosrc\\CMakeFiles\\calc.dir\\options.cpp.obj /FdTARGET_COMPILE_PDB /FS -c \"C:\\Users\\daren\\source\\repos\\Big Number Postfix Calculator cpp\\src\\options.cpp\"",
+  "file": "C:\\Users\\daren\\source\\repos\\Big Number Postfix Calculator cpp\\src\\options.cpp"
+}
+]

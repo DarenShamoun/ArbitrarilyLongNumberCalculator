@@ -1,0 +1,41 @@
+
+# The expression to be computed is
+# (((56669777+99999911111)+352324012) ^ 3) * 555557778 =
+# 562400792227677956625810678708149922000000.
+# The output should omit leading 0's, and omit the extra space.
+000000056669777     99999911111 + 352324012 + 03 ^      555557778 *
+
+# This is equivalent to
+# ((99999999*990001) + (01119111 * (55565+33333)) ) + 88888888 = 99099674628565
+99999999 990001 * 01119111 55565    33333 + * +  88888888              +
+
+
+# This is to test if the program can handle 1 as an exponent.
+# The expression is equivalent to
+# ((123456789*1111111111) * (111119+(2111111*9111111)))^1 = 2638486500477638652325851269760
+123456789 1111111111 * 111119 2111111 9111111 * + *  1 ^
+
+# This tests if the program can handle adding zero.
+# (9+1) * 5 + 0 = 50
+9 1 +     5 *     00000000 + 
+
+# Test for multiply 0
+999999999  0 *
+
+# Test exponent identity: x ^ 0 = 1
+9 0 ^
+
+# This tests the error of insufficient operators.
+# The numbers remaining in the stack are 3636228060866636235 and
+# 5555555.
+ 5555555 333333 5454353 999999 666666 01 ^ * * +
+  
+
+# This tests the error of insufficient operands.
+# The program should ignore the remainder of the input stream until a
+# new expression begins.
+ 3432 3333 9999 + * ^ * * 6666 +
+
+# Even though the previous expression is in error, this should still work
+2 2 +
+ 
