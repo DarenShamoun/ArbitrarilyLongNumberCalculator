@@ -10,43 +10,24 @@ to abstract away the actual operations performed from the calculator class.
 The calculator class is merely a simple driver with no knowledge about
 the actual calculations performed.
 
-## Turn in checklist
-All projects will be graded according to the project rubric in Canvas.
-
-Before uploading your project,
-make sure it meets all of the rubric criteria in order to get full credit.
-
-1. Ensure all project requirements are met and all results are correct.
-2. Ensure the intent behind every program element is "crystal clear".
-   Add documentation where it makes sense to do so.
-3. Ensure the top of each source file includes your name and student ID.
-4. Your finished project must compile on buffy.
-5. Project rubric requirements for correctness, clarity, design,
-   and coding are met or exceeded.
-
 ## Reflection
 When you are **finished**, take a moment to 
 [rate this project](https://forms.gle/uNtvPp78dJhSPMND6).
 
-## Project Requirements
-In order to receive full credit, your project must satisfy **all**
-of the following requirements:
-
+## Command Line Arguments
 1. Process command line arguments:   
    `-h` to display `h`elp text and exit.  
    `-v` to produce `v`erbose output.
-2. Process input strings containing equations in postfix notation.
+   
+## Program Capabilities
+1. Process input strings containing equations in postfix notation.
    Each equation should reside in a single line of input
-3. Process equations using a mix of symbols 
-   (addition, multiplication, exponentiation)
+2. Process equations using a mix of symbols 
+   (addition, subtraction, multiplication, division, exponentiation)
    containing numbers of arbitrary length.
-
-   Assume that most values will exceed the maximum length for any
-   builtin type in C++.
-4. Process input interactively in a terminal window.
-
+3. Process input interactively in a terminal window.
    When running interactively, entering 'quit' exits the program.
-5. Process input directed into the program from standard input,
+4. Process input directed into the program from standard input,
    for example:
 
    ```
@@ -78,8 +59,8 @@ of the following requirements:
 
    The file src/input.txt shows some examples, your program
    should be able to process.
-7. When processing input, the program should silently ignore blank lines
-   and lines the begin with a `#` character.
+7. When processing input, the program ignores blank lines
+   and lines that begin with a `#` character.
 
    The program **should** be tolerant of leading and trailing whitespace
    on lines as well as leading zeroes on values.
@@ -91,7 +72,7 @@ of the following requirements:
    Also encapsulate the code to convert strings to numbers
    in the same way - by extending Handler.
 
-9. Use a `std::stack` to manage calculator BigInt operands.  
+9. Uses a `std::stack` to manage calculator BigInt operands.  
    Do **not** store operators on this stack.
 
 ## Chain of Responsibility Pattern
