@@ -44,20 +44,6 @@ std::unique_ptr<Operation> static CreateOperation(const std::string& token)
     return it->second();
 }
 
-//
-bool CustomCompare(const std::vector<int>& a, const std::vector<int>& b) 
-{
-    if (a.size() < b.size()) return true;
-    if (a.size() > b.size()) return false;
-
-    for (int i = a.size() - 1; i >= 0; i--) 
-    {
-        if (a[i] < b[i]) return true;
-        if (a[i] > b[i]) return false;
-    }
-    return false;
-}
-
 //converts a string to a vector of ints
 BigNumber static ToBigNumber(const std::string& number)
 {

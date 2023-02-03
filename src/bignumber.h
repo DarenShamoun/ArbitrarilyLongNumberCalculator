@@ -42,6 +42,7 @@ struct BigNumber
 		{
 			isPositive = false;
 		}
+        
 		for (size_t i = value.size() - 1; i >= (value[0] == '-' ? 1 : 0); i--)
 		{
 			if (value[i] != '-')
@@ -79,6 +80,25 @@ struct BigNumber
 };
 
 //comparison operators
+
+//equal to operator overload
+bool operator==(const BigNumber& lhs, const BigNumber& rhs)
+{
+	if (lhs.isPositive == rhs.isPositive && lhs.digits.size() == rhs.digits.size())
+	{
+		for (size_t i = 0; i < lhs.digits.size(); i++)
+		{
+			if (lhs.digits[i] != rhs.digits[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+//less than operator overload
 bool operator<(const BigNumber& lhs, const BigNumber& rhs)
 {
     if (lhs.isPositive == rhs.isPositive)
@@ -91,7 +111,7 @@ bool operator<(const BigNumber& lhs, const BigNumber& rhs)
                 {
                     return lhs.isPositive;
                 }
-                else if (lhs.digits[i] > rhs.digits[i])
+                if (lhs.digits[i] > rhs.digits[i])
                 {
                     return !lhs.isPositive;
                 }
@@ -109,6 +129,7 @@ bool operator<(const BigNumber& lhs, const BigNumber& rhs)
     }
 }
 
+//greater than operator overload
 bool operator>(const BigNumber& lhs, const BigNumber& rhs)
 {
     if (lhs.isPositive == rhs.isPositive)
@@ -121,7 +142,7 @@ bool operator>(const BigNumber& lhs, const BigNumber& rhs)
                 {
                     return !lhs.isPositive;
                 }
-                else if (lhs.digits[i] > rhs.digits[i])
+                if (lhs.digits[i] > rhs.digits[i])
                 {
                     return lhs.isPositive;
                 }
@@ -137,6 +158,18 @@ bool operator>(const BigNumber& lhs, const BigNumber& rhs)
     {
         return lhs.isPositive;
     }
+}
+
+//less than or equal to operator overload
+bool operator<=(const BigNumber& lhs, const BigNumber& rhs)
+{
+	return lhs < rhs || lhs == rhs;
+}
+
+//greater than or equal to operator overload
+bool operator>=(const BigNumber& lhs, const BigNumber& rhs)
+{
+	return lhs > rhs || lhs == rhs;
 }
 
 #endif // !BIG_NUMBER_H
