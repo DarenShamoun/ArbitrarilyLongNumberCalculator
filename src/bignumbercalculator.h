@@ -44,6 +44,20 @@ std::unique_ptr<Operation> static CreateOperation(const std::string& token)
     return it->second();
 }
 
+//
+bool CustomCompare(const std::vector<int>& a, const std::vector<int>& b) 
+{
+    if (a.size() < b.size()) return true;
+    if (a.size() > b.size()) return false;
+
+    for (int i = a.size() - 1; i >= 0; i--) 
+    {
+        if (a[i] < b[i]) return true;
+        if (a[i] > b[i]) return false;
+    }
+    return false;
+}
+
 //converts a string to a vector of ints
 BigNumber static ToBigNumber(const std::string& number)
 {
@@ -65,21 +79,26 @@ std::unique_ptr<Operation> static CloneOperation(const std::unique_ptr<Operation
 class BigNumberCalculator
 {
 private:
+    //the result of the calculation
     BigNumber m_result;
 
+	//the map of the different operations
     std::map<std::string, std::unique_ptr<Operation>> operations_;
 
+	//checks if the token is an operator
     static bool IsOperator(const std::string& token)
     {
         static const std::unordered_set<std::string> operators = { "+", "-", "*", "/", "^" };
         return operators.count(token) > 0;
     }
 
+	//checks the number of operands
     size_t GetOperandCount(const std::string& token)
     {
         return operations_.at(token)->GetOperandCount();
     }
 
+	//gets the operation from the map
     std::unique_ptr<Operation>&& GetOperation(const std::string& token)
     {
         return std::move(operations_[token]);
@@ -88,6 +107,7 @@ private:
 public:
     BigNumberCalculator() = default;
 
+    //returns the result of the calculation
     BigNumber GetResult() const
     {
         return m_result;
@@ -99,6 +119,7 @@ public:
         operations_[symbol] = std::move(operation);
     }
 
+	//convert a string to a BigNumber
     BigNumber static ParseBigNumber(const std::string& number)
     {
         BigNumber bigNumber;
@@ -160,12 +181,13 @@ public:
         m_result = operands.top();
     }
 
-  
+	//checks if the token is an operand
     static bool IsOperand(const std::string& token)
     {
         return std::all_of(token.begin(), token.end(), ::isdigit);
     }
 
+	//converts a BigNumber to a string
     std::string ToString() const
     {
         std::stringstream ss;

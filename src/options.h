@@ -1,5 +1,4 @@
 //Daren Shamoun
-//ID# 5550016094
 #ifndef CISC187_MESA_OPTIONS_H
 #define CISC187_MESA_OPTIONS_H
 

@@ -31,21 +31,38 @@ public:
             throw std::invalid_argument("Division by zero is not allowed");
         }
 
-        // Perform long division
-        BigNumber quotient;
-        BigNumber remainder = dividend;
-        while (remainder.digits.size() >= divisor.digits.size())
+        // Check if one of the numbers is negative
+        bool isNegative = false;
+        if (dividend.isPositive != divisor.isPositive)
         {
+            isNegative = true;
+        }
+
+        BigNumber quotient;
+        quotient.isPositive = !isNegative;
+
+        // Check if the dividend is smaller than the divisor
+        if (dividend < divisor)
+        {
+            quotient.digits = { 0 };
+            return quotient;
+        }
+
+        // Perform long division
+        std::vector<int> currentDigits;
+        for (int i = 0; i < dividend.digits.size(); i++)
+        {
+            currentDigits.push_back(dividend.digits[i]);
+
             int digit = 0;
-            while (!std::lexicographical_compare(divisor.digits.rbegin(), divisor.digits.rend(), remainder.digits.rbegin(), remainder.digits.rend()))
+            while (currentDigits.size() >= divisor.digits.size() && !(divisor < currentDigits))
             {
-                // Subtract the divisor from the remainder
                 std::vector<int> difference;
                 int borrow = 0;
-                for (int i = 0; i < remainder.digits.size(); i++)
+                for (int j = 0; j < currentDigits.size(); j++)
                 {
-                    const int a = i < remainder.digits.size() ? remainder.digits[i] : 0;
-                    const int b = i < divisor.digits.size() ? divisor.digits[i] : 0;
+                    int a = j < currentDigits.size() ? currentDigits[j] : 0;
+                    int b = j < divisor.digits.size() ? divisor.digits[j] : 0;
                     int diff = a - b - borrow;
                     if (diff < 0)
                     {
@@ -60,55 +77,21 @@ public:
                 }
                 // Remove leading zeros
                 difference.erase(std::find_if(difference.rbegin(), difference.rend(), [](int digit) { return digit != 0; }).base(), difference.end());
-                remainder = std::move(difference);
+                currentDigits = difference;
                 digit++;
             }
             quotient.digits.push_back(digit);
-            remainder.digits.resize(remainder.digits.size() - divisor.digits.size());
+
+            // Add the next digit to currentDigits if there is one
+            if (i + 1 < dividend.digits.size())
+            {
+                currentDigits.insert(currentDigits.begin(), dividend.digits[i + 1]);
+            }
         }
+
         // Remove leading zeros
         quotient.digits.erase(std::find_if(quotient.digits.rbegin(), quotient.digits.rend(), [](int digit) { return digit != 0; }).base(), quotient.digits.end());
         return quotient;
-        
-
-        // Perform long division
-        //BigNumber quotient;
-        //BigNumber remainder = dividend;
-        //while (remainder.digits.size() >= divisor.digits.size() && !(remainder.digits.size() == 1 && remainder.digits[0] == 0))
-        //{
-        //    int digit = 0;
-        //    while (std::lexicographical_compare(divisor.digits.rbegin(), divisor.digits.rend(), remainder.digits.rbegin(), remainder.digits.rend()))
-        //    {
-        //        // Subtract the divisor from the remainder
-        //        std::vector<int> difference;
-        //        int borrow = 0;
-        //        for (int i = 0; i < remainder.digits.size(); i++)
-        //        {
-        //            const int a = i < remainder.digits.size() ? remainder.digits[i] : 0;
-        //            const int b = i < divisor.digits.size() ? divisor.digits[i] : 0;
-        //            int diff = a - b - borrow;
-        //            if (diff < 0)
-        //            {
-        //                borrow = 1;
-        //                diff += 10;
-        //            }
-        //            else
-        //            {
-        //                borrow = 0;
-        //            }
-        //            difference.push_back(diff);
-        //        }
-        //        // Remove leading zeros
-        //        difference.erase(std::find_if(difference.rbegin(), difference.rend(), [](int digit) { return digit != 0; }).base(), difference.end());
-        //        remainder = std::move(difference);
-        //        digit++;
-        //    }
-        //    quotient.digits.push_back(digit);
-        //    remainder.digits.resize(remainder.digits.size() - divisor.digits.size());
-        //}
-        //// Remove leading zeros
-        //quotient.digits.erase(std::find_if(quotient.digits.rbegin(), quotient.digits.rend(), [](int digit) { return digit != 0; }).base(), quotient.digits.end());
-        //return quotient;
     }
 
     size_t GetOperandCount() const override

@@ -78,4 +78,65 @@ struct BigNumber
     {}
 };
 
+//comparison operators
+bool operator<(const BigNumber& lhs, const BigNumber& rhs)
+{
+    if (lhs.isPositive == rhs.isPositive)
+    {
+        if (lhs.digits.size() == rhs.digits.size())
+        {
+            for (int i = lhs.digits.size() - 1; i >= 0; --i)
+            {
+                if (lhs.digits[i] < rhs.digits[i])
+                {
+                    return lhs.isPositive;
+                }
+                else if (lhs.digits[i] > rhs.digits[i])
+                {
+                    return !lhs.isPositive;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return lhs.digits.size() < rhs.digits.size() ? lhs.isPositive : !lhs.isPositive;
+        }
+    }
+    else
+    {
+        return !lhs.isPositive;
+    }
+}
+
+bool operator>(const BigNumber& lhs, const BigNumber& rhs)
+{
+    if (lhs.isPositive == rhs.isPositive)
+    {
+        if (lhs.digits.size() == rhs.digits.size())
+        {
+            for (int i = lhs.digits.size() - 1; i >= 0; --i)
+            {
+                if (lhs.digits[i] < rhs.digits[i])
+                {
+                    return !lhs.isPositive;
+                }
+                else if (lhs.digits[i] > rhs.digits[i])
+                {
+                    return lhs.isPositive;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return lhs.digits.size() > rhs.digits.size() ? lhs.isPositive : !lhs.isPositive;
+        }
+    }
+    else
+    {
+        return lhs.isPositive;
+    }
+}
+
 #endif // !BIG_NUMBER_H
