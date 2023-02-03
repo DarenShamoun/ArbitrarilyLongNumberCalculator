@@ -5,7 +5,7 @@ include (prevent_source_builds)
 include (clang_tidy)
 
 # If not using tests list all source files here
-add_executable(${PROJECT_NAME} main.cpp "bignumber.h" "bignumbercalculator.h" "options.h" "options.cpp" "addition.h" "subtraction.h" "multiplication.h" "division.h" "exponentiation.h" "operation.h")
+add_executable(${PROJECT_NAME} main.cpp "bignumber.h" "bignumbercalculator.h" "options.h" "options.cpp" "addition.h" "subtraction.h" "multiplication.h" "division.h" "exponentiation.h" "operation.h"     )
 
 #target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
 #  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

@@ -13,6 +13,7 @@ namespace mesa
 	struct option
 	{
 		bool valid = true;
+		bool help = false;
 		bool load = false;
 		bool again = true;
 		bool verbose = false;

@@ -106,7 +106,7 @@ public:
         {
             if (!bool(isdigit(ch)))
             {
-                throw std::invalid_argument("Invalid number");
+                throw std::invalid_argument("Invalid input");
             }
             bigNumber.digits.push_back(ch - '0');
         }
@@ -169,9 +169,10 @@ public:
     std::string ToString() const
     {
         std::stringstream ss;
-        for (auto i = m_result.digits.size() - 1; i >= 0; i--)
+        std::vector<int> reversed(m_result.digits.rbegin(), m_result.digits.rend());
+        for (auto digit : reversed)
         {
-            ss << m_result.digits[i];
+            ss << digit;
         }
         return ss.str();
     }

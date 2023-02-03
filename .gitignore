@@ -31,3 +31,6 @@
 /build/x64-Debug/compile_commands.json
 /build/x64-Debug/CTestTestfile.cmake
 /build/x64-Debug/DartConfiguration.tcl
+/build/x64-Debug/src/CMakeFiles/calc.dir
+/build/x64-Debug/src
+/build/x64-Debug

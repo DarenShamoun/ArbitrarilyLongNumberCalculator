@@ -1,5 +1,4 @@
 //Daren Shamoun
-//ID# 5550016094
 #include "options.h"
 
 namespace mesa
@@ -17,11 +16,11 @@ namespace mesa
 	std::string help(const char* argv)
 	{
 		std::string helpText = usage(argv) +
-			"\n-h:	Displays the help text and exits." +
-			"\n-v:	Produce verbose output\n" +
-			"\n<: The name of the file to read from. " +
-			"\nIf no file name is provided, the program will run interactively." +
-			"\n to quit at anytime enter 'quit'\n";
+			"\n -h:	Displays the help text and exits." +
+			"\n -v:	Produce verbose output\n" +
+			"\n < [filename.txt]: The name of the file to read from. " +
+			"\n If no file name is provided, the program will run interactively." +
+			"\n To quit at anytime enter 'quit'\n";
 
 		return helpText;
 	}
