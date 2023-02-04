@@ -1,7 +1,4 @@
 //Daren Shamoun
-#include "bignumbercalculator.h"
-#include "options.h"
-
 #include <iostream>
 #include <map>
 #include <string>

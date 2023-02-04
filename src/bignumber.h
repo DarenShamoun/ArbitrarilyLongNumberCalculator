@@ -11,18 +11,20 @@
 
 
 //wrapper around the vector of ints that allows the sign of the value to be stored
-struct BigNumber 
+class BigNumber 
 {
-    std::vector<int> digits;
+private:
+    std::vector<int> value;
+	size_t numberOfDigits;
     bool isPositive = true;
 
 	BigNumber() = default;
     
-	//conversion from string
-	BigNumber(const std::string& value)
+	//initialization from a string
+	BigNumber(const std::string& input)
 	{
 		// Check if the input is empty
-		if (value.empty())
+		if (input.empty())
 		{
 			std::cerr << "Error: empty input." << std::endl;
 			exit(1);
